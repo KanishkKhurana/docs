@@ -1,0 +1,158 @@
+The [Fleek.xyz](https://app.fleek.xyz/projects/clpr76gbq0000jt0861oo66rh/home/) platform empowers developers to build lightning-fast web apps and services that are edge-optimized for performance. ENS — Ethereum Name Service Domains provide a decentralized alternative to DNS domains. These are Ethereum based names followed by the .eth TLD. One of its compelling features is its capability to map multiple records with multiple purposes.
+
+In this detailed guide, you’ll learn how to deploy a simple NextJS web app onto Fleek directly from the Fleek platform using the GitHub integration, and also connect your ENS domain to your web app.
+
+Nextjs is a React framework that simplifies the creation of server-rendered React applications. It offers features like automatic code splitting, route pre-fetching, and built-in support for server-side rendering and static site generation, enabling faster, more SEO-friendly web development.
+
+# **Requirements**
+
+-   [Fleek Account](http://app.fleek.xyz/)
+-   Github Account
+-   Create Next App
+-   ENS Name
+
+**Let’s get started**:
+----------
+
+# Create A Fleek Account
+
+The first thing we’ll need to do is create a Fleek account: head over to [](http://app.fleek.xyz/)[http://app.fleek.xyz](http://app.fleek.xyz), and click on the `Create a Free Account` button.
+
+> 💡 Feel free to skip this step if you already have an account on Fleek.xyz!
+
+You’ll be prompted to create an account with your wallet or an email address. Pick your preferred option, and proceed to the next step
+
+----------
+
+# **Create A New NextJs Project**
+
+The first thing we’ll do will be to set up our NextJS project.
+
+To create a new NextJs project open your terminal, `cd` into the directory of your choice, and run the following command:
+
+```
+npx create-next-app@latest nextjs-app
+```
+
+### **Start Up Your Dev Server**
+
+After cloning, we’ll need to `cd` into the directory we created and start our dev server. To do that while still in our terminal, run the following command:
+
+```
+cd nextjs-app && npm i && npm run dev
+```
+
+This will start up the NextJS web app. We can visit it by opening `http://localhost:3000` on our web browser.
+
+Now that we have a fully functional NextJS web app we can proceed to the next step— getting configurations ready for our Fleek deployment.
+
+----------
+
+### **Fleek Deployment Preparation**
+
+To successfully deploy our project on Fleek.xyz we must ensure that we are able to produce static files and add the appropriate configuration to the app.
+
+The first thing we need to do is ensure our app builds out the static pages for our NextJS project. If `next.config.js` (in the root of the cloned template) doesn’t contain the line:
+
+```
+ output: 'export',
+```
+
+Then add it so the configuration looks like this:
+
+```tsx
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  reactStrictMode: true,
+  images: {
+    unoptimized: true,
+  },
+  trailingSlash: true,
+};
+
+module.exports = nextConfig;
+
+
+```
+
+This line of code will create a new folder called `out` for when we build our NextJS app.
+
+Push your NextJs App onto GitHub, and we can move to the next step of deploying your app onto the Fleek platform.
+
+----------
+
+# **Fleek Deployment**
+
+### **Deployment**
+
+Head over to the dashboard [](http://app.fleek.xyz/)[http://app.fleek.xyz](http://app.fleek.xyz), Create a new project, give it a name. You’ll automatically get switched to that project.
+
+Click on the `Add New` button at the top right. Then click on `Deploy my site`
+
+You’ll be brought to this page:
+
+Click on the GitHub icon, connect your GitHub account, and select your NextJs repo.
+
+Once you’ve selected the repo you would like to grant Fleek access to, click on `Save`. You should see this — the image below shows a list of repos Fleek has access to.
+
+![fleek1](https://raw.githubusercontent.com/geniusyinka/ensdocs/refs/heads/master/docs/learn/images/fleek1.png)
+
+The next step will be to click on the ‘Deploy’ button of the repo you would like to deploy to Fleek.
+
+You’ll then be brought to this page:
+
+![fleek2](https://raw.githubusercontent.com/geniusyinka/ensdocs/refs/heads/master/docs/learn/images/fleek2.png)
+
+A few things to note about this page.
+
+1.  You can modify the `Site Name` to anything you want.
+2.  The framework is automatically detected by Fleek.
+3.  The `main` branch is automatically selected. If you’d like to deploy code from a different branch, feel free to select that branch.
+4.  The `Publish Directory` is also automatically determined by Fleek based on the **Default** publish directory by the framework. If you’ve made any modifications to this, change the name to reflect this.
+5.  The `Build Command` is also automatically determined by Fleek. If this is different from yours, modifications can be made.
+
+Once you’re satisfied with the modifications you’ve made, simply click on the `Deploy Site` button to allow Fleek to begin the deployment process.
+
+You will be automatically redirected to the `overview` page on the Fleek dashboard.
+
+![fleek3](https://raw.githubusercontent.com/geniusyinka/ensdocs/refs/heads/master/docs/learn/images/fleek3.png)
+
+The `overview` page shows you the status of your site deployment, you can also monitor the status of your deployment by clicking on the `Deploys` tab. The `Audit Log` , `Analytics`, `Settings`, have helpful information about your deployment as well.
+
+Once your site has been successfully deployed, you should see a `Site is live` notification and your site’s URL.
+
+Congratulations! You’ve successfully deployed your Next.js App on Fleek!
+
+----------
+
+# Connecting Your ENS Domain To Fleek
+
+Now that you’ve deployed your web app on Fleek, the next step is to connect your ENS (Ethereum Name Service) domain to your site. This will allow you to access your app using your custom ENS domain, making it easier for users to find and interact with your application.
+
+### Step-by-Step Guide:
+
+-   **Navigate to your project**: In the Fleek dashboard, go to **Project > Hosting.** Select your deployed site.
+-   **Access the settings**: Once you're in the Deployed Site view, click on the **Settings** tab located in the navigation bar.
+-   **Go to Domains**: Under Settings, select the **Domains** section, where you’ll find the option to configure domain settings for your web app.
+-   **Add your ENS domain**:In the Domains section, look for the **ENS Domain** field. Enter your ENS name (e.g., _yourname.eth_), then click on the **'Add ENS Name'** button to proceed.
+
+**Set ENS automatically**: Fleek makes this step simple by allowing you to automatically configure your ENS domain settings. Under the **Select Method** option, leave it as **'Set Automatically'** and click on **Continue**.
+
+![ens1](https://raw.githubusercontent.com/geniusyinka/ensdocs/refs/heads/master/docs/learn/images/ens1.png)
+
+In the next screen, select the ‘IPNS Content Name’ — this is the recommended option.
+
+![ens2](https://raw.githubusercontent.com/geniusyinka/ensdocs/refs/heads/master/docs/learn/images/ens2.png)
+
+**Finalize the connection**: Fleek will handle the rest by connecting your ENS domain to your web app, setting the correct DNS and configurations on the blockchain.
+
+![ens3](https://raw.githubusercontent.com/geniusyinka/ensdocs/refs/heads/master/docs/learn/images/ens3.png)
+
+![ens4](https://raw.githubusercontent.com/geniusyinka/ensdocs/refs/heads/master/docs/learn/images/ens4.png)
+
+And congratulations! You've successfully; deployed your nextJS app to the fleek platform, and also connected your ENS domain to your web app. Users can now visit your web app by adding the `.limo` extension at the end of your ENS domain. For example: `geniusyinka.eth.limo`
+
+----------
+
+Hosting a decentralized website on Fleek and connecting it to an ENS domain provides an easy way to create websites that are resilient, secure, and censorship-resistant. Using Fleek’s decentralized hosting platform and ENS’s blockchain-based domain service, you’ve set up your website in just a few steps.
